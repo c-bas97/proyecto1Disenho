@@ -22,7 +22,7 @@ public class DTO {
     private ArrayList<IPersistencia> tipoSalida;
     private ArrayList<String> resultados;
     private String clave;
-    private int cifra;
+    private String cifra;
     
 
     public DTO(){
@@ -82,8 +82,8 @@ public class DTO {
         this.tipoSalida = tipoSalida;
     }
 
-    public void setResultados(ArrayList<String> resultados) {
-        this.resultados = resultados;
+    public void setResultados(String resultado) {
+        this.resultados.add(resultado);
     }
 
     public String getClave() {
@@ -94,11 +94,11 @@ public class DTO {
         this.clave = clave;
     }
 
-    public int getCifra() {
+    public String getCifra() {
         return cifra;
     }
 
-    public void setCifra(int cifra) {
+    public void setCifra(String cifra) {
         this.cifra = cifra;
     }
     
