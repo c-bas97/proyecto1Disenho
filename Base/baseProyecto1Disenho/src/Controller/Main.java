@@ -19,7 +19,8 @@ public class Main {
     
     public static void main(String[] args){
         DTO dto = new DTO();
-        dto.setFrase("esto es un secreto no lo puedo decir aserpros");
+        //dto.setFrase("esto es un secreto no lo puedo decir aserpros");
+        dto.setFrase("abc def jl");
         ArrayList<String> alf = new ArrayList<>(Arrays.asList(new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"}));
         dto.setAlfabeto(alf);
         
@@ -48,5 +49,7 @@ public class Main {
 
         Telefonico tel = new Telefonico();
         tel.codificar(dto);
+        dto.setFrase(dto.getResultados().get(0));
+        tel.decodificar(dto);
     }
 }
