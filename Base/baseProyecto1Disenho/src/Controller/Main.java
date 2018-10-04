@@ -6,6 +6,8 @@
 package Controller;
 
 import Model.Substitucion;
+import Model.Telefonico;
+import Model.Transposicion;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,16 +19,34 @@ public class Main {
     
     public static void main(String[] args){
         DTO dto = new DTO();
-        Substitucion sub = new Substitucion();
-        
-        dto.setFrase("tarea programada");
-        dto.setCifra("23");
+        dto.setFrase("esto es un secreto no lo puedo decir aserpros");
         ArrayList<String> alf = new ArrayList<>(Arrays.asList(new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"}));
         dto.setAlfabeto(alf);
-        sub.codificar(dto);
         
-        for (int i = 0; i<dto.getResultados().size(); i++){
-            System.out.println(dto.getResultados().get(i));
-        }
+//        Substitucion sub = new Substitucion();
+//        dto.setCifra("23");        
+//        sub.codificar(dto);
+//        for (int i = 0; i<dto.getResultados().size(); i++){
+//            System.out.println(dto.getResultados().get(i));
+//        }
+//        dto.setFrase(dto.getResultados().get(0));
+//        sub.decodificar(dto);
+//        for (int i = 0; i<dto.getResultados().size(); i++){
+//            System.out.println(dto.getResultados().get(i));
+//        }
+
+//        Transposicion trans = new Transposicion();
+//        trans.codificar(dto);
+//        for (int i = 0; i<dto.getResultados().size(); i++){
+//            System.out.println(dto.getResultados().get(i));
+//        }
+//        dto.setFrase(dto.getResultados().get(0));
+//        trans.decodificar(dto);
+//        for (int i = 0; i<dto.getResultados().size(); i++){
+//            System.out.println(dto.getResultados().get(i));
+//        }
+
+        Telefonico tel = new Telefonico();
+        tel.codificar(dto);
     }
 }
