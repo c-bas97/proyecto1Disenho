@@ -58,7 +58,8 @@ public class XML implements IPersistencia{
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("archivo.xml"));
+            
+            StreamResult result = new StreamResult(new File(new SimpleDateFormat("dd_MM_yyyy__HH_mm_ss").format(Calendar.getInstance().getTime()))+ ".xml");
             transformer.transform(source, result);
             System.out.println("File saved!");
 		} catch (ParserConfigurationException pce) {
@@ -67,6 +68,7 @@ public class XML implements IPersistencia{
 			tfe.printStackTrace();
 		}
     }
+    
     @Override
     public String toString(){
         return "XML";
