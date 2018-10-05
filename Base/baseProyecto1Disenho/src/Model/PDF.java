@@ -22,7 +22,8 @@ public class PDF implements IPersistencia {
     @Override
     public void escribir(DTO datos) {
         try{
-            FileOutputStream archi = new FileOutputStream("kiki.pdf", true);
+            String nombreArch = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + ".pdf";
+            FileOutputStream archi = new FileOutputStream(nombreArch);
             String timeLog = new SimpleDateFormat("dd:MM:yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
             Document doc = new Document();
             PdfWriter.getInstance(doc, archi);
@@ -38,7 +39,7 @@ public class PDF implements IPersistencia {
                 doc.add(new Paragraph("\n"));
             }
             doc.close();
-            }
+        }
         catch(Exception e){
             System.out.println("Se encontro un error");
         }
