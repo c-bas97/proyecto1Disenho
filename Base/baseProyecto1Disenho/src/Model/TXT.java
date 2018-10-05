@@ -21,7 +21,7 @@ public class TXT implements IPersistencia {
     public void escribir(DTO datos) {
         try{
             System.out.println("Creando txt");
-            BufferedWriter archivo = new BufferedWriter(new FileWriter("bitacora.txt"));
+            BufferedWriter archivo = new BufferedWriter(new FileWriter("bitacora.txt", true));
             String timeLog = new SimpleDateFormat("dd:MM:yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
             archivo.write("Fecha de Peticion: " + timeLog);
             archivo.newLine();
@@ -31,7 +31,7 @@ public class TXT implements IPersistencia {
             archivo.newLine();
             archivo.newLine();
             for(int x = 0; x < datos.getTipoAlgoritmo().size(); x++){
-                archivo.write("Metodo: " + datos.getTipoAlgoritmo().get(x));
+                archivo.write("Metodo: " + datos.getTipoAlgoritmo().get(x).toString());
                 archivo.newLine();
                 archivo.write("Forma: " + datos.getTipoSalida().get(x));
                 archivo.newLine();
