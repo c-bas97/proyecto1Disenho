@@ -12,6 +12,8 @@ import Model.TXT;
 import Model.XML;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +52,9 @@ public class Main {
         */
         
         DAOAlfabetos dalfa = new DAOAlfabetos();
-        //dalfa.crear("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
+        dalfa.crear("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
+        //alfa.actualizar("abecedario", TRUE);
+        //dalfa.validar("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
         //File file = new File(".");
         //for(String fileNames : file.list()) System.out.println(fileNames);
         //dalfa.getAlfabetos();

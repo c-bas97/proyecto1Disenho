@@ -7,10 +7,8 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import Model.Alfabeto;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +16,6 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
@@ -36,56 +33,74 @@ public class DAOAlfabetos {
         this.state= con.createStatement();
     };
     
-    public void actualizar(String nombreColumna) throws SQLException{
-        state.executeUpdate("INSERT INTO ALFABETOS(NOMBRE,ALFABETO) VALUES('" + nombreColumna + "')");
-        System.out.println("alfabeto " + nombreColumna + " agregado a la base");
+    
+    
+    public void actualizar(String nombre,Boolean estado) throws SQLException{
+        state.executeUpdate("UPDATE ALFABETOS SET ESTADO = '" + estado + "' WHERE NOMBRE = '"+ nombre +"' ");
+        System.out.println("alfabeto " + nombre + " actualizado");
     };
     
     
     
     public void crear(String archivo) throws SQLException, FileNotFoundException, IOException{
-        String nombre;
-        String alfabeto;
-    
-        BufferedReader reader = new BufferedReader(new FileReader(archivo));
-        nombre = reader.readLine();
-        alfabeto = reader.readLine();
-        reader.close();
- 
-        state.executeUpdate("INSERT INTO ALFABETOS(NOMBRE,ALFABETO) VALUES('" + nombre + "','" + alfabeto + "')");
-        System.out.println("alfabeto " + archivo + " agregado a la base");
+        Boolean validado = validar(archivo);
+        if(validado == true){
+            String nombre;
+            String alfabeto;
+            try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+                nombre = reader.readLine();
+                alfabeto = reader.readLine();
+            }
+            state.executeUpdate("INSERT INTO ALFABETOS(NOMBRE,ALFABETO,ESTADO) VALUES('" + nombre + "','" + alfabeto + "', TRUE)");
+            System.out.println("alfabeto " + archivo + " agregado a la base");
+        }
+        else{
+            System.out.println("no se pudo agregar porque ya esta en la base");
+        }
+        
         
     };
     
     
     
-    
-    public void eliminar(String nombreColumna) throws SQLException{
+    /*
+    public void eliminar(String nombreColumna) throws SQLException{ No hace falta
         state.executeUpdate("DELETE FROM ALFABETOS WHERE NOMBRE = '" + nombreColumna + "'");
         System.out.println(nombreColumna + " ha sido eliminado de la base de datos");
     };
-    
-    private boolean validar(DTO datos){
-        System.out.println("Clase DAOAlfabetos, metodo Validar. Valida que un nuevo alfabeto pueda ser guardado");
+    */
+    private boolean validar(String archivo) throws SQLException, FileNotFoundException, IOException{ // recordar cambiar por private
+        String nombre;
+        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        nombre = reader.readLine();
+        reader.close();
+        rs = state.executeQuery("SELECT NOMBRE FROM Alfabetos Where NOMBRE = '" + nombre + "'");
+        boolean recordFound = rs.next();
+        if(recordFound){
+            System.out.println("Ya se encuentra eb la base");
+            return false;
+        }
+        else{
+            System.out.println("validado, continuando on la agregacion");
         return true;
+        }
+
+        
+                
     }
+    
+    
     
     public ResultSet getAlfabetos() throws SQLException{
-        rs = state.executeQuery("SELECT * FROM Alfabetos");
+        rs = state.executeQuery("SELECT * FROM Alfabetos WHERE ESTADO = TRUE");
         /*
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (rs.next()) {
-            for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(",  ");
-                String columnValue = rs.getString(i);
-                System.out.print(columnValue);
-    }
-    System.out.println("");
-}*/
-        System.out.println(rs);
+        while(rs.next()){
+            System.out.println(rs.getString(1));
+        }*/
         return rs;
     }
+    
+    
     
     public Alfabeto getAlfabeto(String nombre){
         System.out.println("Clase DAOAlfabetos, metodo GetAlfabeto. Carga el alfabeto con el que trabajará el usuario");
