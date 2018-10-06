@@ -5,3 +5,17 @@ Resultados: Resultado de la frase  al aplicarle el/los algoritmo(s) seleccionado
 Metodo: Telefonico
 Forma: TXT
 
+Fecha de Peticion: 04:10:2018 23:10:14
+Frase original: abc def jl
+Resultados: Resultado de la frase abc def jl al aplicarle el/los algoritmo(s) seleccionado(s)  
+
+Metodo: Model.Algoritmo@68de145
+Forma: XML
+
+Fecha de Peticion: 04:10:2018 23:10:36
+Frase original: abc def jl
+Resultados: Resultado de la frase abc def jl al aplicarle el/los algoritmo(s) seleccionado(s)  
+
+Metodo: Model.Algoritmo@68de145
+Forma: XML
+

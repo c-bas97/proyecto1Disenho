@@ -7,6 +7,7 @@ package Controller;
 
 import java.util.Collection;
 import Model.Alfabeto;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,13 +17,13 @@ public class Controlador  {
     private Alfabeto alfabetoActual;
     private DAOAlfabetos dbalfabetos;
     
-    public Controlador(){
+    public Controlador() throws SQLException{
         this.dbalfabetos = new DAOAlfabetos();
     }
     
-    public Collection cargarAlfabetos(){
+    public void cargarAlfabetos(){
         System.out.println("Clase Controller, metodo CargarAlfabetos. Solicita los nombres de los alfabetos disponibles");
-        return dbalfabetos.getAlfabetos();
+        //return dbalfabetos.getAlfabetos();
     }
     
     public Collection cargarPersistencias(){
