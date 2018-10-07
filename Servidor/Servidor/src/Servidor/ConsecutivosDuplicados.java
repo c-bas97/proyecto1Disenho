@@ -13,6 +13,7 @@ public class ConsecutivosDuplicados implements Frase{
 
     @Override
     public ConsecutivosDuplicados crearFrase() {
+        return null;
         //debe crear una frase de este tipo y devolverla
     }
     

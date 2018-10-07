@@ -13,6 +13,7 @@ public class NoConsecutivosNoDuplicados implements Frase{
 
     @Override
     public NoConsecutivosNoDuplicados crearFrase() {
+        return null;
         //retornar la frase
     }
     
