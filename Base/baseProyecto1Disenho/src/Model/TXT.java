@@ -30,6 +30,12 @@ public class TXT implements IPersistencia {
             archivo.write("Resultados: " + "Resultado de la frase " + datos.getFrase() + " al aplicarle el/los algoritmo(s) seleccionado(s)  ");
             archivo.newLine();
             archivo.newLine();
+            if(datos.isModo() == true){
+                    archivo.write("Modo: Decodificador");
+                }
+                else{
+                    archivo.write("Modo: Codificador");
+                }
             for(int x = 0; x < datos.getTipoAlgoritmo().size(); x++){
                 archivo.write("Metodo: " + datos.getTipoAlgoritmo().get(x).toString());
                 archivo.newLine();

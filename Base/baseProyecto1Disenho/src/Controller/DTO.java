@@ -44,7 +44,7 @@ public class DTO {
     public boolean isModo() {
         return modo;
     }
-
+    
     public ArrayList<Algoritmo> getTipoAlgoritmo() {
         return tipoAlgoritmo;
     }

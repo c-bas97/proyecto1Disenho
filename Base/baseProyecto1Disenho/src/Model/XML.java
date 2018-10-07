@@ -45,6 +45,14 @@ public class XML implements IPersistencia{
             Element frase = doc.createElement("Frase_Ingresada");
             frase.appendChild(doc.createTextNode(datos.getFrase()));
             fecha.appendChild(frase);
+            Element modo = doc.createElement("Modo");
+            if(datos.isModo() == true){
+                    modo.appendChild(doc.createTextNode("Modo_Decodificador"));
+            }
+            
+            else{
+                    modo.appendChild(doc.createTextNode("Modo_Codificador"));
+            }
             
             for(int x = 0; x < datos.getTipoAlgoritmo().size(); x++){
                 Element metodo = doc.createElement("Metodo");

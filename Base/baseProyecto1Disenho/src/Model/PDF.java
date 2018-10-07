@@ -32,6 +32,12 @@ public class PDF implements IPersistencia {
             doc.add(new Paragraph("\n"));
             doc.add(new Paragraph("Frase Original: " + datos.getFrase()));
             doc.add(new Paragraph("\n"));
+            if(datos.isModo() == true){
+                    doc.add(new Paragraph("Modo: Decodificador"));
+                }
+                else{
+                    doc.add(new Paragraph("Modo: Codificador"));
+                }
             for(int x = 0; x < datos.getTipoAlgoritmo().size(); x++){
                 doc.add(new Paragraph("Metodo: " + datos.getTipoAlgoritmo().get(x).toString()));
                 doc.add(new Paragraph("\n"));
