@@ -6,8 +6,10 @@
 package Controller;
 
 import Model.Algoritmo;
+//import Model.Binario;
 import Model.IPersistencia;
 import Model.PDF;
+import Model.PalabraClave;
 import Model.TXT;
 import Model.XML;
 import java.io.File;
@@ -60,6 +62,7 @@ public class Main {
         //dalfa.getAlfabetos();
         //dalfa.eliminar("pruebaNueva");
         
+        
 //        Substitucion sub = new Substitucion();
 //        dto.setCifra("23");        
 //        sub.codificar(dto);
@@ -72,6 +75,7 @@ public class Main {
 //            System.out.println(dto.getResultados().get(i));
 //        }
 
+
 //        Transposicion trans = new Transposicion();
 //        trans.codificar(dto);
 //        for (int i = 0; i<dto.getResultados().size(); i++){
@@ -82,11 +86,28 @@ public class Main {
 //        for (int i = 0; i<dto.getResultados().size(); i++){
 //            System.out.println(dto.getResultados().get(i));
 //        }
-        /*
-        Telefonico tel = new Telefonico();
-        tel.codificar(dto);
-        dto.setFrase(dto.getResultados().get(0));
-        tel.decodificar(dto);
-        */
+
+//        Telefonico tel = new Telefonico();
+//        tel.codificar(dto);
+//        dto.setFrase(dto.getResultados().get(0));
+//        tel.decodificar(dto);
+
+        
+//        Binario bin = new Binario();
+//        bin.codificar(dto);
+//        System.out.println(dto.getResultados().get(0));
+//        dto.setFrase(dto.getResultados().get(0));
+//        bin.decodificar(dto);
+//        System.out.println(dto.getResultados().get(1));
+
+
+//        PalabraClave clave = new PalabraClave();
+//        dto.setFrase("tarea programada");
+//        dto.setClave("tango");
+//        clave.codificar(dto);
+//        System.out.println(dto.getResultados().get(0));
+//        dto.setFrase(dto.getResultados().get(0));
+//        clave.decodificar(dto);
+//        System.out.println(dto.getResultados().get(1));
     }
 }

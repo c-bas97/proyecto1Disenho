@@ -6,7 +6,6 @@
 package Model;
 
 import Controller.DTO;
-import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +21,7 @@ public class Transposicion extends Algoritmo {
         
         for (int i=0; i<frase.length(); i++){   //recorre letra por letra la frase a codificar
             char c = frase.charAt(i);
-            String caracter = String.valueOf(c).toLowerCase();
+            String caracter = String.valueOf(c);
             
             if (!caracter.equalsIgnoreCase(" ")){
                 palabra += caracter;

@@ -43,7 +43,7 @@ public class Telefonico extends Algoritmo{
         //recorrer frase, cada letra se busca en "division" y codifica, los espacios son *
         for(int i=0; i<frase.length(); i++){
             char c = frase.charAt(i);
-            String letra = String.valueOf(c).toLowerCase();
+            String letra = String.valueOf(c);
             
             if (!letra.equalsIgnoreCase(" ")){
                 for (int j=0; j<division.size(); j++){      //revisa donde está la letra que debe codificar

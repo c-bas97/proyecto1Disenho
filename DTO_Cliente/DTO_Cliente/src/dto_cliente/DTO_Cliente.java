@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class DTO_Cliente {
 
-    private Boolean cargarAlfabetos;
+    private Boolean cargarDatos;
     private ArrayList<String> alfabetos;
     private ArrayList<String> tiposFrases;
     private ArrayList<String> algoritmos;
@@ -29,12 +29,12 @@ public class DTO_Cliente {
     public DTO_Cliente (){
     }
 
-    public Boolean getCargarAlfabetos() {
-        return cargarAlfabetos;
+    public Boolean getCargarDatos() {
+            return cargarDatos;
     }
 
-    public void setCargarAlfabetos(Boolean cargarAlfabetos) {
-        this.cargarAlfabetos = cargarAlfabetos;
+    public void setCargarDatos(Boolean cargarDatos) {
+        this.cargarDatos = cargarDatos;
     }
 
     public ArrayList<String> getAlfabetos() {

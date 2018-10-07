@@ -16,6 +16,6 @@ public class FactoryFrase {
     public void generarFrase(DTO_Cliente dto){
         //según el tipo de frase (compararla con el ToString de las hijas de frase),
         //se ejecuta el generador
-        dto.getTipoFrase();
+        dto.getTipoFrase()
     }
 }
