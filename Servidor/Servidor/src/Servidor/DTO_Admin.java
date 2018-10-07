@@ -12,31 +12,30 @@ import java.io.File;
  * @author Usuario
  */
 public class DTO_Admin {
-    private File archioAlfabeto;          //alfabeto a guardar/modificar
-    private File algoritmo;         //para agregar
+    private String archioAlfabeto;          //alfabeto a guardar/modificar
+    private String nombreAlfabeto;
+    private String archivoAlgoritmo;         //para agregar
     private String nombreAlgoritmo;     //activar o desactivar
 
-    public File getArchioAlfabeto() {
-        return archioAlfabeto;
+    public DTO_Admin() {
     }
-
-    public void setArchioAlfabeto(File archioAlfabeto) {
+    
+    public void setArchioAlfabeto(String archioAlfabeto) {
         this.archioAlfabeto = archioAlfabeto;
     }
 
-    public File getAlgoritmo() {
-        return algoritmo;
+    public void setNombreAlfabeto(String nombreAlfabeto) {
+        this.nombreAlfabeto = nombreAlfabeto;
     }
 
-    public void setAlgoritmo(File algoritmo) {
-        this.algoritmo = algoritmo;
-    }
-
-    public String getNombreAlgoritmo() {
-        return nombreAlgoritmo;
+    public void setarchivoAlgoritmo(String algoritmo) {
+        this.archivoAlgoritmo = algoritmo;
     }
 
     public void setNombreAlgoritmo(String nombreAlgoritmo) {
         this.nombreAlgoritmo = nombreAlgoritmo;
     }
+    
+    
+
 }
