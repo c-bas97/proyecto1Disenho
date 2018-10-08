@@ -5,8 +5,12 @@
  */
 package Model;
 
+import Controller.DTO;
 import java.util.ArrayList;
 import Controller.IValidable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -24,9 +28,16 @@ public class Alfabeto implements IValidable {
         this.activo = true;
     }
     
-    @Override
-    public boolean validar (Object objeto){
+    public boolean validar (Object frase){
+        if(frase.getClass() == DTO.class){
+            DTO objeto = (DTO) frase;
+            String frase1 = objeto.getFrase();
+            List<Character> list = frase1.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
+            boolean contain = alfabeto.containsAll(list);
+            
+        }
         System.out.println("Clase Alfabeto, método Validar. Se verifica que la frase ingresada por el usuario sea compatible con el alfabeto activo");
+        
         return true;
     }
 

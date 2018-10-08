@@ -18,6 +18,8 @@ import static java.lang.Boolean.TRUE;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -26,7 +28,9 @@ import java.util.Arrays;
 public class Main {
     
     public static void main(String[] args) throws SQLException, IOException{
+        
         DTO dto = new DTO();
+        /*
         Algoritmo Telefonico = new Algoritmo();
         Algoritmo Binario = new Algoritmo();
         ArrayList algoritmos = new ArrayList();
@@ -36,13 +40,14 @@ public class Main {
         IPersistencia ip = new XML();
         salidas.add(ip);
         dto.setTipoSalida(salidas);
-        
+        */
         //dto.setFrase("esto es un secreto no lo puedo decir aserpros");
+        /*
         dto.setFrase("abc def jl");
         ArrayList<String> alf = new ArrayList<>(Arrays.asList(new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"}));
         dto.setAlfabeto(alf);
         dto.setNombreAlfabeto("prueba");
-        dto.setModo(true);
+        dto.setModo(true);*/
         /*
         Controlador cont = new Controlador();
         PDF pdf = new PDF();
@@ -50,10 +55,32 @@ public class Main {
         TXT tx = new TXT();
         tx.escribir(dto);
         
-        */
+        *//*
+        String string = "testingString";
+        List<Character> list = string.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
+        System.out.println(list);*/
+        ArrayList<String> alfabeto = new ArrayList<String>();
+        ArrayList<String> frase2 = new ArrayList<String>();
+        alfabeto.add("a");
+        alfabeto.add("b");
+        alfabeto.add("c");
+        alfabeto.add("d");
+        alfabeto.add("e");
+        System.out.println(alfabeto);
         
-        DAOAlfabetos dalfa = new DAOAlfabetos();
-        dalfa.crear("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
+        String frase1 = "abcd";
+        
+        
+        
+        List<Character> list = frase1.chars().mapToObj((i) -> (char)i).collect(Collectors.toList());
+        System.out.println(list);
+        boolean contain = alfabeto.containsAll(list);
+        System.out.println(contain);
+        
+        
+        
+//        DAOAlfabetos dalfa = new DAOAlfabetos();
+        //dalfa.crear("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
         //alfa.actualizar("abecedario", TRUE);
         //dalfa.validar("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");
         //File file = new File(".");
