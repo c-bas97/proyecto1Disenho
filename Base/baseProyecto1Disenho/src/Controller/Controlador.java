@@ -7,7 +7,11 @@ package Controller;
 
 import java.util.Collection;
 import Model.Alfabeto;
+import java.io.File;
+import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,22 +27,45 @@ public class Controlador  {
         alfabetoActual = dbalfabetos.getAlfabeto("default");
     }
     
-    public void cargarAlfabetos(){
+    public ResultSet cargarAlfabetos() throws SQLException{
         System.out.println("Clase Controller, metodo CargarAlfabetos. Solicita los nombres de los alfabetos disponibles");
-        //return dbalfabetos.getAlfabetos();
+        return dbalfabetos.getAlfabetos();
     }
     
-    public Collection cargarPersistencias(){
+    public ArrayList<String> cargarPersistencias(){
         System.out.println("Clase Controller, metodo CargarPersistencias. Solicita los nombres de los distintos tipos de persistencias disponibles");
-        return null;
+        ArrayList<String> datos = new ArrayList<String>();
+        File folder = new File("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\src\\Persistencias");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+                String dato = listOfFiles[i].getName();
+                String modificado = dato.replaceAll(".java", "");
+                datos.add(modificado);
+                                                      }
+ 
+        return datos;
     }
     
-    public Collection cargarAlgoritmos(){
+    public ArrayList<String> cargarAlgoritmos(){
         System.out.println("Clase Controller, metodo CargarAlgoritmos. Le regresa a la vista el nombre de aquellos algoritmos disponibles");
-        return null;
+        ArrayList<String> datos = new ArrayList<String>();
+        File folder = new File("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Servidor\\Servidor\\src\\AlgoritmosActivos");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+                String dato = listOfFiles[i].getName();
+                String modificado = dato.replaceAll(".java", "");
+                datos.add(modificado);
+        }
+      
+        
+        return datos;
     }
     
-    public void agregarAlfabeto(DTO datos){}
+    public void agregarAlfabeto(String rutaArchivo) throws SQLException, IOException{
+    dbalfabetos.crear(rutaArchivo);
+    }
     
     
     public void actualizarAlfabeto(DTO datos, Boolean estado) throws SQLException{
@@ -69,7 +96,7 @@ public class Controlador  {
     
     private boolean validar(DTO datos){
         System.out.println("Clase Controller, metodo Validar. Le solicita al alfabeto que valide una frase para luego poder ejecutar los algoritmos");
-        System.out.println(alfabetoActual.getAlfabeto());
+       
         return alfabetoActual.validar(datos);
     }
     

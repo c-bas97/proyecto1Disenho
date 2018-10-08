@@ -8,9 +8,9 @@ package Controller;
 import Model.Algoritmo;
 //import Model.Binario;
 import Model.IPersistencia;
-import Model.PDF;
-import Model.TXT;
-import Model.XML;
+import Persistencias.PDF;
+import Persistencias.TXT;
+import Persistencias.XML;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Boolean.FALSE;
@@ -93,8 +93,10 @@ public class Main {
         
         dto.setFrase("prueba numero uno");
        
-        
+        */
         Controlador cont = new Controlador();
+        cont.cargarAlgoritmos();
+        /*
          DAOAlfabetos dalfa = new DAOAlfabetos();
         dalfa.getAlfabeto("default");
         cont.procesarPeticion(dto);
