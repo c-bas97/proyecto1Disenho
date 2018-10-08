@@ -26,8 +26,8 @@ public class Usuario extends javax.swing.JFrame {
     public Usuario() {
         initComponents();
         ArrayList algoritmos = new ArrayList();
-        algoritmos.add("kiki");
-        algoritmos.add("do you");
+        algoritmos.add("PalabraClave");
+        algoritmos.add("Sustitucion");
         algoritmos.add("love me");
         dtoC.setAlfabetos(algoritmos);
         for (String alfabeto : dtoC.getAlfabetos()) {
@@ -335,24 +335,29 @@ public class Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeticionActionPerformed
-        // TODO add your handling code here:   
+        // TODO add your handling code here:
+           
+        informacion();
+        
+        if(dtoC.getCodificar() == true)
         if(dtoC.getAlgoritmos().contains("PalabraClave") == true){
             if(txtfPClave.equals("")){
                 JOptionPane.showMessageDialog(null, "Por favor inserte una frase", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);    
             }
             else{
-                informacion();
+                dtoC.setFrase(txtfPClave.getText());
             }
-            
         if (dtoC.getAlgoritmos().contains("Sustitucion")){
             if(txtfLargo.getText().length() != 2){
                  JOptionPane.showMessageDialog(null, "Por favor inserte un nuemro de dos cifras", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);    
             }
             else{
-                informacion();
+                dtoC.setCifra(txtfLargo.getText());
             }
         }
         }
+        
+        
 
     }//GEN-LAST:event_btnPeticionActionPerformed
 
@@ -403,11 +408,13 @@ public class Usuario extends javax.swing.JFrame {
         dtoC.setAlfabeto((String) comboAlfabetos.getSelectedItem());
         dtoC.setTiposBitacoras((ArrayList<String>) listSalida.getSelectedValuesList());
         dtoC.setAlgoritmos((ArrayList<String>) listAlgoritmos.getSelectedValuesList());
+        System.out.println(dtoC.getAlgoritmos());
         if (radDeco.isSelected()){
             dtoC.setCodificar(true);
         }
         else{
             dtoC.setCodificar(false);
+            
         }
         if (radSim.isSelected()){
         }
