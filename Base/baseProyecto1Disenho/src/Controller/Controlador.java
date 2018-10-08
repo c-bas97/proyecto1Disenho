@@ -37,7 +37,11 @@ public class Controlador  {
     }
     
     public void agregarAlfabeto(DTO datos){}
-    public void actualizarAlfabeto(DTO datos){}
+    
+    
+    public void actualizarAlfabeto(DTO datos, Boolean estado) throws SQLException{
+    dbalfabetos.actualizar(datos.getNombreAlfabeto(),estado);
+    }
     
     public void predefinirAlfabeto(DTO dto){
         System.out.println("Clase Controller, metodo PredefinirAlfabeto. Solicita cargar el alfabeto al controlador");
