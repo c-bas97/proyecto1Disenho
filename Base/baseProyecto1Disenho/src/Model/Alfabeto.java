@@ -5,9 +5,11 @@
  */
 package Model;
 
+import Controller.DAOAlfabetos;
 import Controller.DTO;
 import java.util.ArrayList;
 import Controller.IValidable;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,21 +24,27 @@ public class Alfabeto implements IValidable {
     private ArrayList<String> alfabeto;
     private Boolean activo;
     
-    public Alfabeto(String nom, ArrayList<String> alf){
+    public Alfabeto(String nom, ArrayList<String> alf) throws SQLException{
         this.nombre = nom;
         this.alfabeto = alf;
         this.activo = true;
+        DAOAlfabetos dalfa = new DAOAlfabetos();
+        
     }
     
     public boolean validar (Object frase){
         if(frase.getClass() == DTO.class){
             DTO objeto = (DTO) frase;
             String frase1 = objeto.getFrase();
+           
             ArrayList<String> fraseEnLista = new ArrayList<String>();
+            
              for(int i=0; i< frase1.length();i++){
              fraseEnLista.add(Character.toString(frase1.charAt(i)));
         }
+             
             if(alfabeto.containsAll(fraseEnLista)== true){
+                System.out.println("Validado con exito, prosiguiendo a codificar/decodificar");
                 return true;
             }
             else{

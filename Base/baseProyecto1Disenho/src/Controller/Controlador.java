@@ -20,6 +20,7 @@ public class Controlador  {
     
     public Controlador() throws SQLException{
         this.dbalfabetos = new DAOAlfabetos();
+        alfabetoActual = dbalfabetos.getAlfabeto("default");
     }
     
     public void cargarAlfabetos(){
@@ -44,7 +45,7 @@ public class Controlador  {
     dbalfabetos.actualizar(datos.getNombreAlfabeto(),estado);
     }
     
-    public void predefinirAlfabeto(DTO dto){
+    public void predefinirAlfabeto(DTO dto) throws SQLException{
         System.out.println("Clase Controller, metodo PredefinirAlfabeto. Solicita cargar el alfabeto al controlador");
         this.alfabetoActual = dbalfabetos.getAlfabeto(dto.getNombreAlfabeto());
     }
@@ -61,19 +62,19 @@ public class Controlador  {
         System.out.println("    - Termina de procesar la petición y regresa los datos");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Error", "la frase no se adecua al alfabeto activo", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "la frase no se adecua al alfabeto activo", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }
     
     private boolean validar(DTO datos){
         System.out.println("Clase Controller, metodo Validar. Le solicita al alfabeto que valide una frase para luego poder ejecutar los algoritmos");
-        
+        System.out.println(alfabetoActual.getAlfabeto());
         return alfabetoActual.validar(datos);
     }
     
     private void ejecutarAlgoritmos(DTO datos){
-        System.out.println("Clase Controller, metodo EjecutarAlgoritmos. Llama a los algoritmos de codificación o descodificación");
+        System.out.println("Clase Controller, metodo EjecutarAlgoritmos. Llama a los algoritmos de codificación o decodificación");
         if(datos.isModo() == false){
             for(int x = 0; x < datos.getTipoAlgoritmo().size(); x++){
                 datos.getTipoAlgoritmo().get(x).codificar(datos);

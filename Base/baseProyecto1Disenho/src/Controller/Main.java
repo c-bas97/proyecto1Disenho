@@ -59,6 +59,8 @@ public class Main {
         String string = "testingString";
         List<Character> list = string.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
         System.out.println(list);*/
+        
+        /*
         ArrayList<String> alfabeto = new ArrayList<String>();
         ArrayList<String> frase2 = new ArrayList<String>();
         alfabeto.add("a");
@@ -89,14 +91,14 @@ public class Main {
         alfabeto.add("z");
         alfabeto.add(" ");
         
-        dto.setFrase("Prueba numero uno");
+        dto.setFrase("prueba numero uno");
        
         
         Controlador cont = new Controlador();
          DAOAlfabetos dalfa = new DAOAlfabetos();
         dalfa.getAlfabeto("default");
         cont.procesarPeticion(dto);
-        
+        */
         
 //        DAOAlfabetos dalfa = new DAOAlfabetos();
         //dalfa.crear("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Base\\baseProyecto1Disenho\\prueba1Alfabeto.txt");

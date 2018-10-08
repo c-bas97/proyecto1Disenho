@@ -102,9 +102,9 @@ public class DAOAlfabetos {
     
     
     
-    public Alfabeto getAlfabeto(String nombre){
+    public Alfabeto getAlfabeto(String nombre) throws SQLException{
         System.out.println("Clase DAOAlfabetos, metodo GetAlfabeto. Carga el alfabeto con el que trabajará el usuario");
-        ArrayList<String> alf = new ArrayList<>(Arrays.asList(new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"}));
+        ArrayList<String> alf = new ArrayList<String>(Arrays.asList(new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "}));
         Alfabeto alfabeto = new Alfabeto("default",alf);
         
         return alfabeto;        
