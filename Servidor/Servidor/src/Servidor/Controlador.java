@@ -27,30 +27,27 @@ public class Controlador {
     
     }
         
-        
-    
-    
-    public void actualziarAlfabeto(DTO_Admin dto){
+    public void actualizarAlfabeto(DTO_Admin dto){
         
     }
     
     public void agregarAlgoritmo(DTO_Admin dto) throws FileNotFoundException, IOException{
         String archivoEntrada = dto.getArchivoAlgoritmo();
-    String nombreAlgoritmo = dto.getNombreAlgoritmo();
-    File fin = new File(archivoEntrada);
-    FileInputStream fis = new FileInputStream(fin);
-    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-    
-    String dest = "C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Servidor\\Servidor\\src\\AlgoritmosActivos" + File.separator + nombreAlgoritmo + ".java";
-    FileWriter fstream = new FileWriter(dest, true);
-    BufferedWriter out = new BufferedWriter(fstream);
-    String aLine = null;
-    while ((aLine = in.readLine()) != null) {
-        out.write(aLine);
-        out.newLine();
-                                            }
-    in.close();
-    out.close();
+        String nombreAlgoritmo = dto.getNombreAlgoritmo();
+        File fin = new File(archivoEntrada);
+        FileInputStream fis = new FileInputStream(fin);
+        BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
+        String dest = "C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Servidor\\Servidor\\src\\AlgoritmosActivos" + File.separator + nombreAlgoritmo + ".java";
+        FileWriter fstream = new FileWriter(dest, true);
+        BufferedWriter out = new BufferedWriter(fstream);
+        String aLine = null;
+        while ((aLine = in.readLine()) != null) {
+            out.write(aLine);
+            out.newLine();
+                                                }
+        in.close();
+        out.close();
     }
     
     public void eliminarAlgoritmo(DTO_Admin dto){
