@@ -67,12 +67,18 @@ public class SocketServidor {
     private void atenderPeticion(){
         try {
             //obtener el DTO que envió el cliente con su solicitud (datos, frase, codificación o decodificación)
-            DTO_Cliente objeto = (DTO_Cliente) flujoEntrada.readObject();
+            DTO_Cliente dto = (DTO_Cliente) flujoEntrada.readObject();
             
             //llamar al controlador
+            if (dto.getCargarDatos()){
+                controlador.cargarDatos(dto);
+            }
+            else {
+                controlador.procesarPeticion(dto);
+            }
             
             //enviar respuesta al cliente
-            flujoSalida.writeObject(objeto);
+            flujoSalida.writeObject(dto);
         } catch (IOException ex) {
             System.out.println("Problemas leyendo o escribiendo en el flujo entrada/salida");
         } catch (ClassNotFoundException ex) {

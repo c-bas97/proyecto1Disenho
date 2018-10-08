@@ -37,7 +37,7 @@ public class Substitucion extends Algoritmo{
         if (flag){
             for (int i = 0; i<frase.length(); i++){    //recorre la frase letra por letra
                 char c = frase.charAt(i);
-                String letra = String.valueOf(c).toLowerCase(); 
+                String letra = String.valueOf(c); 
                 
                 while (!letra.equalsIgnoreCase(" ") && i<frase.length()){
                     int indice;
@@ -68,7 +68,7 @@ public class Substitucion extends Algoritmo{
                     i++;
                     if (i < frase.length()){
                         c = frase.charAt(i);
-                        letra = String.valueOf(c).toLowerCase();
+                        letra = String.valueOf(c);
                     }                
                 }
                 if (i <frase.length()){

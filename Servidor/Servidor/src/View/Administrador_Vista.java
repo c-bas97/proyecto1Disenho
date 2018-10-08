@@ -5,7 +5,11 @@
  */
 package View;
 
+import Servidor.Controlador;
 import Servidor.DTO_Admin;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,7 +27,9 @@ public class Administrador_Vista extends javax.swing.JFrame {
     
     private String ruta_archivo;
     DTO_Admin dtoA = new DTO_Admin();
+    Controlador cont = new Controlador();
     public Administrador_Vista() {
+        
         initComponents();
     }
 
@@ -450,6 +456,13 @@ public class Administrador_Vista extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "No selecciono");
         }
         dtoA.setNombreAlgoritmo(txtfNAlgoritmo.getText());
+        try {
+            cont.agregarAlgoritmo(dtoA);
+        } catch (IOException ex) {
+            Logger.getLogger(Administrador_Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
         
     }//GEN-LAST:event_btnAAlgoritmoActionPerformed
