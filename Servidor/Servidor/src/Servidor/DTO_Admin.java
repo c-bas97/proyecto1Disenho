@@ -17,6 +17,22 @@ public class DTO_Admin {
     private String archivoAlgoritmo;         //para agregar
     private String nombreAlgoritmo;     //activar o desactivar
 
+    public String getArchioAlfabeto() {
+        return archioAlfabeto;
+    }
+
+    public String getNombreAlfabeto() {
+        return nombreAlfabeto;
+    }
+
+    public String getArchivoAlgoritmo() {
+        return archivoAlgoritmo;
+    }
+
+    public String getNombreAlgoritmo() {
+        return nombreAlgoritmo;
+    }
+
     public DTO_Admin() {
     }
     
