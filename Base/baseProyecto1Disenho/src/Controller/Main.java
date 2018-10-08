@@ -66,17 +66,36 @@ public class Main {
         alfabeto.add("c");
         alfabeto.add("d");
         alfabeto.add("e");
-        System.out.println(alfabeto);
+        alfabeto.add("f");
+        alfabeto.add("g");
+        alfabeto.add("h");
+        alfabeto.add("i");
+        alfabeto.add("j");
+        alfabeto.add("k");
+        alfabeto.add("l");
+        alfabeto.add("m");
+        alfabeto.add("n");
+        alfabeto.add("o");
+        alfabeto.add("p");
+        alfabeto.add("q");
+        alfabeto.add("r");
+        alfabeto.add("s");
+        alfabeto.add("t");
+        alfabeto.add("u");
+        alfabeto.add("v");
+        alfabeto.add("w");
+        alfabeto.add("x");
+        alfabeto.add("y");
+        alfabeto.add("z");
+        alfabeto.add(" ");
         
-        String frase1 = "abcd";
+        dto.setFrase("Prueba numero uno");
+       
         
-        
-        
-        List<Character> list = frase1.chars().mapToObj((i) -> (char)i).collect(Collectors.toList());
-        System.out.println(list);
-        boolean contain = alfabeto.containsAll(list);
-        System.out.println(contain);
-        
+        Controlador cont = new Controlador();
+         DAOAlfabetos dalfa = new DAOAlfabetos();
+        dalfa.getAlfabeto("default");
+        cont.procesarPeticion(dto);
         
         
 //        DAOAlfabetos dalfa = new DAOAlfabetos();

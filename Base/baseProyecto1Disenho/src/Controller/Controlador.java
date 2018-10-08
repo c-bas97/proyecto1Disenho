@@ -8,6 +8,7 @@ package Controller;
 import java.util.Collection;
 import Model.Alfabeto;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,17 +52,24 @@ public class Controlador  {
     public void procesarPeticion(DTO datos){
         System.out.println("Clase Controller, metodo procesarPeticion. Procesa una peticion de procesamiento por parte de un usuario");
         System.out.println("    - Valida los datos");
-        validar(datos);
+        Boolean validado = validar(datos);
+        if(validado == true){
         System.out.println("    - Ejecuta los algoritmos");
         ejecutarAlgoritmos(datos);
         System.out.println("    - Guarda la bitácora");
         escribirArchivo(datos);
         System.out.println("    - Termina de procesar la petición y regresa los datos");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error", "la frase no se adecua al alfabeto activo", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     private boolean validar(DTO datos){
         System.out.println("Clase Controller, metodo Validar. Le solicita al alfabeto que valide una frase para luego poder ejecutar los algoritmos");
-        return alfabetoActual.validar(datos.getFrase());
+        
+        return alfabetoActual.validar(datos);
     }
     
     private void ejecutarAlgoritmos(DTO datos){

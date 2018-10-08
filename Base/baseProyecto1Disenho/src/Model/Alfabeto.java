@@ -32,13 +32,22 @@ public class Alfabeto implements IValidable {
         if(frase.getClass() == DTO.class){
             DTO objeto = (DTO) frase;
             String frase1 = objeto.getFrase();
-            List<Character> list = frase1.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
-            boolean contain = alfabeto.containsAll(list);
+            ArrayList<String> fraseEnLista = new ArrayList<String>();
+             for(int i=0; i< frase1.length();i++){
+             fraseEnLista.add(Character.toString(frase1.charAt(i)));
+        }
+            if(alfabeto.containsAll(fraseEnLista)== true){
+                return true;
+            }
+            else{
+                return false;
+            }
             
         }
-        System.out.println("Clase Alfabeto, método Validar. Se verifica que la frase ingresada por el usuario sea compatible con el alfabeto activo");
         
-        return true;
+        else{
+            return false;
+        }
     }
 
     public String getNombre() {
