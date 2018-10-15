@@ -130,7 +130,7 @@ public class Usuario extends javax.swing.JFrame {
         txtfPClave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         radDeco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        radDeco.setText("Decodificar");
+        radDeco.setText("Codificar");
 
         radSim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         radSim.setText("Simbolos no consecutivos");
@@ -229,22 +229,19 @@ public class Usuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                     .addComponent(txtfFrase)
+                    .addComponent(jLabel5)
+                    .addComponent(btnPeticion)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(btnPeticion)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel18)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel2)
+                                .addGap(40, 40, 40)
+                                .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel18)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,7 +327,7 @@ public class Usuario extends javax.swing.JFrame {
         //alfabetos.add((String) comboAlfabetos.getSelectedItem());
 
         dtoC.setAlfabeto((String) comboAlfabetos.getSelectedItem());
-        System.out.println(dtoC.getAlfabeto());
+        //System.out.println(dtoC.getAlfabeto());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -338,27 +335,44 @@ public class Usuario extends javax.swing.JFrame {
         // TODO add your handling code here:
            
         informacion();
-        
-        if(dtoC.getCodificar() == true)
-        if(dtoC.getAlgoritmos().contains("PalabraClave") == true){
-            if(txtfPClave.equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor inserte una frase", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);    
+        //System.out.println(dtoC.getAlgoritmos().contains("PalabraClave"));
+        if(dtoC.getCodificar() == true){
+            
+            if(dtoC.getAlgoritmos().contains("PalabraClave") == true){
+                if(txtfPClave.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Por favor inserte una frase", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);    
+                }
+                else{
+                    dtoC.setFrase(txtfPClave.getText());
+                }
             }
-            else{
-                dtoC.setFrase(txtfPClave.getText());
-            }
-        if (dtoC.getAlgoritmos().contains("Sustitucion")){
-            if(txtfLargo.getText().length() != 2){
-                 JOptionPane.showMessageDialog(null, "Por favor inserte un nuemro de dos cifras", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);    
-            }
-            else{
-                dtoC.setCifra(txtfLargo.getText());
+            if (dtoC.getAlgoritmos().contains("Sustitucion")){
+                if(txtfLargo.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Por favor insertar un numero", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                if(txtfLargo.getText().length() != 2){
+                    JOptionPane.showMessageDialog(null, "Por favor inserte un nuemro de dos cifras", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    dtoC.setCifra(txtfLargo.getText());
+                }
             }
         }
+        
+        //pasar el dto
+        
+        //llamar al metodo que hace las cosas
+        
+        try {
+        txtaRes.append("Resultado de ejecutar el/los algortimos:\n");
+            for (int i=0; i<dtoC.getResultados().size(); i++){
+                txtaRes.append(dtoC.getResultados().get(i) + "\n");
+            }
+        } 
+        catch (Exception e){
+            txtaRes.append("Error al ejecutar el/los algortimos");
         }
-        
-        
-
     }//GEN-LAST:event_btnPeticionActionPerformed
 
     private void txtfLargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfLargoActionPerformed
@@ -405,18 +419,35 @@ public class Usuario extends javax.swing.JFrame {
     }
     
     private void informacion(){
+        int pos;
         dtoC.setAlfabeto((String) comboAlfabetos.getSelectedItem());
-        dtoC.setTiposBitacoras((ArrayList<String>) listSalida.getSelectedValuesList());
-        dtoC.setAlgoritmos((ArrayList<String>) listAlgoritmos.getSelectedValuesList());
-        System.out.println(dtoC.getAlgoritmos());
+        
+        if(listSalida.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor seleccionar algun tipo de salida", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(listAlgoritmos.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor seleccionar algun tipo de algoritmo", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
         if (radDeco.isSelected()){
             dtoC.setCodificar(true);
         }
-        else{
-            dtoC.setCodificar(false);
-            
+        if(txtfFrase.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor introducir frase", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
-        if (radSim.isSelected()){
+        
+        else{
+            dtoC.setTiposBitacoras((ArrayList<String>) listSalida.getSelectedValuesList());
+            dtoC.setAlgoritmos((ArrayList<String>) listAlgoritmos.getSelectedValuesList());
+            String replaceAll = dtoC.getAlgoritmos().get(0).replaceAll("(^\\[|\\]$)", "");
+            pos = dtoC.getAlgoritmos().size();
+            String replaceAll2 = dtoC.getAlgoritmos().get(pos-1).replaceAll("(^\\[|\\]$)", "");
+            dtoC.getAlgoritmos().remove(0);
+            dtoC.getAlgoritmos().add(0, replaceAll);
+            dtoC.getAlgoritmos().remove(pos-1);
+            pos = dtoC.getAlgoritmos().size();
+            dtoC.getAlgoritmos().add(pos, replaceAll2);
+            dtoC.setCodificar(false);
+            dtoC.setFrase(txtfFrase.getText());
         }
     }
 
