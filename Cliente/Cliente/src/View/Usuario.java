@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package View;
+import Cliente.SocketCliente;
 import dto_cliente.DTO_Cliente;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -19,17 +23,20 @@ public class Usuario extends javax.swing.JFrame {
     DefaultListModel modelSalidas = new DefaultListModel();
     DefaultListModel modelAlgoritmos = new DefaultListModel();
     DTO_Cliente dtoC = new DTO_Cliente();
+    SocketCliente socket = new SocketCliente();
 
     /**
      * Creates new form Usuario
      */
-    public Usuario() {
+    public Usuario() throws IOException {
         initComponents();
-        ArrayList algoritmos = new ArrayList();
-        algoritmos.add("PalabraClave");
-        algoritmos.add("Sustitucion");
-        algoritmos.add("love me");
-        dtoC.setAlfabetos(algoritmos);
+        //ArrayList algoritmos = new ArrayList();
+        //algoritmos.add("PalabraClave");
+        //algoritmos.add("Sustitucion");
+        //algoritmos.add("love me");
+        //dtoC.setAlfabetos(algoritmos);
+        dtoC.setCargarDatos(true);
+        socket.enviarSolicitud(dtoC);
         for (String alfabeto : dtoC.getAlfabetos()) {
             comboAlfabetos.addItem(alfabeto);
         }
@@ -45,6 +52,7 @@ public class Usuario extends javax.swing.JFrame {
             modelSalidas.addElement(alfabeto);
         }
         listSalida.setModel(modelAlgoritmos);
+        dtoC.setCargarDatos(false);
         
     }
 
@@ -360,8 +368,12 @@ public class Usuario extends javax.swing.JFrame {
             }
         }
         
-        //pasar el dto
-        
+        try {
+            //pasar el dto
+            socket.enviarSolicitud(dtoC);
+        } catch (IOException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }        
         //llamar al metodo que hace las cosas
         
         try {
@@ -413,7 +425,11 @@ public class Usuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Usuario().setVisible(true);
+                try {
+                    new Usuario().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
