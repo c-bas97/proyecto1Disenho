@@ -55,7 +55,6 @@ public class Administrador_Vista extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnAAlfabeto = new javax.swing.JButton();
-        txtfAAlfabeto = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtfEAlfabeto = new javax.swing.JTextField();
@@ -113,29 +112,21 @@ public class Administrador_Vista extends javax.swing.JFrame {
             }
         });
 
-        txtfAAlfabeto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(67, 67, 67)
                 .addComponent(btnAAlfabeto, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                .addGap(93, 93, 93))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtfAAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(96, 96, 96))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(txtfAAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(btnAAlfabeto)
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eliminar Alfabeto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
@@ -434,7 +425,6 @@ public class Administrador_Vista extends javax.swing.JFrame {
             ruta_archivo = j.getSelectedFile().getAbsolutePath();
             //----------------
             //Usamos el metodo abrir pdf para mostrarlo
-            dtoA.setNombreAlfabeto(txtfAAlfabeto.getText());
             dtoA.setArchioAlfabeto(ruta_archivo);
             
         } else {
@@ -549,7 +539,6 @@ public class Administrador_Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtfAAlfabeto;
     private javax.swing.JTextField txtfAAlgoritmo;
     private javax.swing.JTextField txtfEAlfabeto;
     private javax.swing.JTextField txtfEAlgoritmo;
