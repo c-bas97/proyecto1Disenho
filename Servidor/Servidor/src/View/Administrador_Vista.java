@@ -25,13 +25,13 @@ import java.util.logging.Logger;
  */
 public class Administrador_Vista extends javax.swing.JFrame {
 
-    Controlador controlador;
 /**
      * Creates new form Administrador_Vista
      */
     private String ruta_archivo;
-    DTO_Admin dtoA = new DTO_Admin();
-    Controlador cont = new Controlador();
+    private DTO_Admin dtoA = new DTO_Admin();
+    private Servidor.Controlador cont = new Servidor.Controlador();
+    
     public Administrador_Vista() {
         
         initComponents();
@@ -372,7 +372,8 @@ public class Administrador_Vista extends javax.swing.JFrame {
             ruta_archivo = j.getSelectedFile().getAbsolutePath();
             //----------------
             //Usamos el metodo abrir pdf para mostrarlo
-            abrir_pdf(ruta_archivo);
+            cont.abrirCarpetaBitacoras(ruta_archivo);
+//            abrir_pdf(ruta_archivo);
         } else {
             //JOptionPane.showMessageDialog(null, "No selecciono");
         }
@@ -390,7 +391,8 @@ public class Administrador_Vista extends javax.swing.JFrame {
             ruta_archivo = j.getSelectedFile().getAbsolutePath();
             //----------------
             //Usamos el metodo abrir pdf para mostrarlo
-            abrir_pdf(ruta_archivo);
+            cont.abrirCarpetaBitacoras(ruta_archivo);
+//            abrir_pdf(ruta_archivo);
         } else {
             //JOptionPane.showMessageDialog(null, "No selecciono");
         }
@@ -408,7 +410,8 @@ public class Administrador_Vista extends javax.swing.JFrame {
             ruta_archivo = j.getSelectedFile().getAbsolutePath();
             //----------------
             //Usamos el metodo abrir pdf para mostrarlo
-            abrir_pdf(ruta_archivo);
+            cont.abrirCarpetaBitacoras(ruta_archivo);
+//            abrir_pdf(ruta_archivo);
         } else {
             //JOptionPane.showMessageDialog(null, "No selecciono");
         }
@@ -426,7 +429,11 @@ public class Administrador_Vista extends javax.swing.JFrame {
             //----------------
             //Usamos el metodo abrir pdf para mostrarlo
             dtoA.setArchioAlfabeto(ruta_archivo);
-            
+            try {
+                cont.agregarAlfabeto(dtoA);
+            } catch (Exception ex) {
+                System.out.println("Error al agregar el alfabeto");
+            }
         } else {
             //JOptionPane.showMessageDialog(null, "No selecciono");
         } 
@@ -454,24 +461,23 @@ public class Administrador_Vista extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Administrador_Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-
-        
-        
+     
     }//GEN-LAST:event_btnAAlgoritmoActionPerformed
 
     private void btnEAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEAlgoritmoActionPerformed
         // TODO add your handling code here:
-        
         dtoA.setNombreAlgoritmo(txtfEAlgoritmo.getText());
-        
+        cont.eliminarAlgoritmo(dtoA);
     }//GEN-LAST:event_btnEAlgoritmoActionPerformed
 
     private void btnEAlfabetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEAlfabetoActionPerformed
         // TODO add your handling code here: 
         dtoA.setArchioAlfabeto(txtfEAlfabeto.getText());
-        
+        try {
+            cont.actualizarAlfabeto(dtoA);
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al intentar activar/desactivar el alfabeto indicado");;
+        }
     }//GEN-LAST:event_btnEAlfabetoActionPerformed
 
     /**
@@ -509,14 +515,14 @@ public class Administrador_Vista extends javax.swing.JFrame {
         });
     }
     
-    public void abrir_pdf(String ruta){
-        try{
-            Runtime.getRuntime().exec("rundll32 url.dll FileProtocolHandler " + ruta);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No sea tan mamon");
-        }
-    }
+//    public void abrir_pdf(String ruta){
+//        try{
+//            Runtime.getRuntime().exec("rundll32 url.dll FileProtocolHandler " + ruta);
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+//        }
+//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAAlfabeto;

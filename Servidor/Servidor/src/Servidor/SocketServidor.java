@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  *
@@ -64,7 +65,7 @@ public class SocketServidor {
         }
     }
     
-    private void atenderPeticion(){
+    private void atenderPeticion() throws SQLException{
         try {
             //obtener el DTO que envió el cliente con su solicitud (datos, frase, codificación o decodificación)
             DTO_Cliente dto = (DTO_Cliente) flujoEntrada.readObject();

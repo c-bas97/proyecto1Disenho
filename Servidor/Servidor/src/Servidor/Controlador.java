@@ -5,6 +5,8 @@
  */
 package Servidor;
 
+import Controller.DTO;
+import Model.Algoritmo;
 import dto_cliente.DTO_Cliente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,21 +16,27 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
 public class Controlador {
-    
-    //private Controller control;
-    
-    public void agregarAlfabeto(DTO_Admin dto) throws IOException{
-    
+
+    public void agregarAlfabeto(DTO_Admin dto) throws IOException, SQLException{
+        Controller.Controlador controler = new Controller.Controlador();
+        controler.agregarAlfabeto(dto.getArchioAlfabeto());
     }
         
-    public void actualizarAlfabeto(DTO_Admin dto){
-        
+    public void actualizarAlfabeto(DTO_Admin dtoA) throws SQLException{
+        Controller.Controlador controler = new Controller.Controlador();
+        DTO dto = new DTO();
+        dto.setNombreAlfabeto(dtoA.getArchioAlfabeto());
+        controler.actualizarAlfabeto(dto, Boolean.TRUE);
     }
     
     public void agregarAlgoritmo(DTO_Admin dto) throws FileNotFoundException, IOException{
@@ -51,18 +59,77 @@ public class Controlador {
     }
     
     public void eliminarAlgoritmo(DTO_Admin dto){
-        
+        //agregar código que elimina el algoritmo de la carpeta de baseProyecto
     }
     
-    private void abrirCarpetaBitácoras(){
-        
+    public void abrirCarpetaBitacoras(String ruta_archivo){
+        try{
+            Runtime.getRuntime().exec("rundll32 url.dll FileProtocolHandler " + ruta_archivo);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error");
+        }
     }
     
-    public void cargarDatos(DTO_Cliente dto){
+    public void cargarDatos(DTO_Cliente dtoc) throws SQLException{
+        ArrayList<String> alf = new ArrayList();
+        ArrayList<String> tipFr;
+        ArrayList<String> alg;
+        ArrayList<String> tipBit;
+        Controller.Controlador controler = new Controller.Controlador();
         
+        //Obtener datos
+        alg = controler.cargarAlgoritmos();
+        tipBit = controler.cargarPersistencias();
+        
+        alf = controler.cargarAlfabetos();
+        
+        tipFr = new ArrayList<String>();
+        Class[] classes = ClassUtil.getClasses("Servidor");
+        for(Class clazz : classes)
+        {
+            if(Frase.class.isAssignableFrom(clazz)) //Need something in this if statement
+            {
+                //agregar a tipFr el nombre (sin el .java) de la clase, o ponerle un toString a las clases que implementan F---rase y meter ese string al arreglo
+            }
+        }
+        
+        //asignar los datos
+        dtoc.setAlfabetos(alf);
+        dtoc.setAlgoritmos(alg);
+        dtoc.setTiposFrases(tipFr);
+        dtoc.setTiposBitacoras(tipBit);
     }
     
-    public void procesarPeticion(DTO_Cliente dto){
-        
+    public void procesarPeticion(DTO_Cliente dto) throws SQLException{
+        Controller.Controlador controler = new Controller.Controlador();
+        if (dto.getTipoFrase() != null){
+            DTO datos = new DTO();
+            
+            //asignar los datos necesarios para codificar o decodificar una frase
+            datos.setCifra(dto.getCifra());
+            datos.setClave(dto.getClave());
+            datos.setFrase(dto.getFrase());
+            if (dto.getCodificar())
+                datos.setModo(false);
+            else
+                datos.setModo(true);
+            datos.setNombreAlfabeto(dto.getAlfabeto());
+            
+            ArrayList<Algoritmo> lista1 = new ArrayList();
+            for (int i=0; i<dto.getAlgoritmos().size(); i++){
+               lista1.add(valueOf(dto.getAlgoritmos().get(i)));
+            }
+            datos.setTipoAlgoritmo();
+            datos.setTipoSalida();
+            
+            
+            //realizar codificación/decodificación
+            controler.procesarPeticion(datos);
+        }
+        else{
+            FactoryFrase fabrica = new FactoryFrase();
+            fabrica.generarFrase(dto);
+        }
     }
 }
