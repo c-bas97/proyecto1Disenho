@@ -473,11 +473,16 @@ public class Administrador_Vista extends javax.swing.JFrame {
     private void btnEAlfabetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEAlfabetoActionPerformed
         // TODO add your handling code here: 
         dtoA.setArchioAlfabeto(txtfEAlfabeto.getText());
+<<<<<<< Updated upstream
         try {
             cont.actualizarAlfabeto(dtoA);
         } catch (Exception ex) {
             System.out.println("Ocurrió un error al intentar activar/desactivar el alfabeto indicado");;
         }
+=======
+        
+        
+>>>>>>> Stashed changes
     }//GEN-LAST:event_btnEAlfabetoActionPerformed
 
     /**

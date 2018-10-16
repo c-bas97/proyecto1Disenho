@@ -22,6 +22,7 @@ public class Usuario extends javax.swing.JFrame {
     
     DefaultListModel modelSalidas = new DefaultListModel();
     DefaultListModel modelAlgoritmos = new DefaultListModel();
+    DefaultListModel modeCar = new DefaultListModel();
     DTO_Cliente dtoC = new DTO_Cliente();
     SocketCliente socket = new SocketCliente();
 
@@ -42,16 +43,21 @@ public class Usuario extends javax.swing.JFrame {
         }
         
         //Popular algoritmos
-        for (String alfabeto : dtoC.getAlfabetos()) {
-            modelAlgoritmos.addElement(alfabeto);
+        for (String algoritmos : dtoC.getAlgoritmos()) {
+            modelAlgoritmos.addElement(algoritmos);
         }
         listAlgoritmos.setModel(modelAlgoritmos);
         
         //Popular Salidas
-        for (String alfabeto : dtoC.getAlfabetos()) {
-            modelSalidas.addElement(alfabeto);
+        for (String bitacora : dtoC.getTiposBitacoras()) {
+            modelSalidas.addElement(bitacora);
         }
         listSalida.setModel(modelAlgoritmos);
+        
+        for (String cara : dtoC.getTiposFrases()){
+            modeCar.addElement(cara);
+        }
+        listAdi.setModel(modeCar);
         dtoC.setCargarDatos(false);
         
     }
@@ -83,9 +89,8 @@ public class Usuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtfPClave = new javax.swing.JTextField();
         radDeco = new javax.swing.JRadioButton();
-        radSim = new javax.swing.JRadioButton();
-        radNoD = new javax.swing.JRadioButton();
-        radNoGen = new javax.swing.JRadioButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listAdi = new javax.swing.JList<>();
         jLabel18 = new javax.swing.JLabel();
         txtfFrase = new javax.swing.JTextField();
         btnPeticion = new javax.swing.JButton();
@@ -140,65 +145,56 @@ public class Usuario extends javax.swing.JFrame {
         radDeco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         radDeco.setText("Codificar");
 
-        radSim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        radSim.setText("Simbolos no consecutivos");
-        radSim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radSimActionPerformed(evt);
-            }
-        });
-
-        radNoD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        radNoD.setText("No duplicados");
-
-        radNoGen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        radNoGen.setText("No generar frase");
+        listAdi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jScrollPane3.setViewportView(listAdi);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radDeco)
-                    .addComponent(radSim)
-                    .addComponent(radNoD)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
-                        .addComponent(radNoGen)))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtfPClave, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(txtfLargo)
-                .addGap(9, 9, 9))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(radDeco)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtfLargo))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addGap(28, 28, 28)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(txtfPClave, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(radDeco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radSim)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radNoD)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radNoGen)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfPClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtfLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74))
+                    .addComponent(txtfLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(radDeco)
+                .addGap(12, 12, 12))
         );
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -275,14 +271,14 @@ public class Usuario extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(13, 13, 13)
                 .addComponent(jLabel4)
-                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel18)
-                        .addGap(10, 10, 10)
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel18)
+                                .addGap(10, 10, 10)
                                 .addComponent(txtfFrase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
                                 .addComponent(jLabel5)
@@ -290,14 +286,16 @@ public class Usuario extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(46, 46, 46)
                                 .addComponent(btnPeticion))
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Codificar", jPanel1);
@@ -391,10 +389,6 @@ public class Usuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfLargoActionPerformed
 
-    private void radSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radSimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radSimActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -454,16 +448,28 @@ public class Usuario extends javax.swing.JFrame {
         else{
             dtoC.setTiposBitacoras((ArrayList<String>) listSalida.getSelectedValuesList());
             dtoC.setAlgoritmos((ArrayList<String>) listAlgoritmos.getSelectedValuesList());
-            String replaceAll = dtoC.getAlgoritmos().get(0).replaceAll("(^\\[|\\]$)", "");
-            pos = dtoC.getAlgoritmos().size();
-            String replaceAll2 = dtoC.getAlgoritmos().get(pos-1).replaceAll("(^\\[|\\]$)", "");
-            dtoC.getAlgoritmos().remove(0);
-            dtoC.getAlgoritmos().add(0, replaceAll);
-            dtoC.getAlgoritmos().remove(pos-1);
-            pos = dtoC.getAlgoritmos().size();
-            dtoC.getAlgoritmos().add(pos, replaceAll2);
+            dtoC.setTiposFrases((ArrayList<String>) listAdi.getSelectedValuesList());
+            
+            for (int i=0; i<11; i++){
+                String replaceAll = dtoC.getAlgoritmos().get(i).replaceAll("(^\\[|\\]$)", "");
+                dtoC.getAlgoritmos().remove(i);
+                dtoC.getAlgoritmos().add(i-1, replaceAll);
+            }
+            
+            for (int i=0; i<11; i++){
+                String replaceAll = dtoC.getAlfabetos().get(i).replaceAll("(^\\[|\\]$)", "");
+                dtoC.getAlfabetos().remove(i);
+                dtoC.getAlfabetos().add(i-1, replaceAll);
+            }
+            
+            for (int i=0; i<11; i++){
+                String replaceAll = dtoC.getTiposFrases().get(i).replaceAll("(^\\[|\\]$)", "");
+                dtoC.getTiposFrases().remove(i);
+                dtoC.getTiposFrases().add(i-1, replaceAll);
+            }
             dtoC.setCodificar(false);
             dtoC.setFrase(txtfFrase.getText());
+            
         }
     }
 
@@ -484,14 +490,13 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JList<String> listAdi;
     private javax.swing.JList<String> listAlgoritmos;
     private javax.swing.JList<String> listSalida;
     private javax.swing.JRadioButton radDeco;
-    private javax.swing.JRadioButton radNoD;
-    private javax.swing.JRadioButton radNoGen;
-    private javax.swing.JRadioButton radSim;
     private javax.swing.JTextArea txtaRes;
     private javax.swing.JTextField txtfFrase;
     private javax.swing.JTextField txtfLargo;
