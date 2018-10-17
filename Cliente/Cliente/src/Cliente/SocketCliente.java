@@ -42,9 +42,7 @@ public class SocketCliente  {
             //Establece mecanismo de comunicacion con el servidor - Lectura..
             //Entrada de datos
             
-            
             conexionEntrada = cliente.getInputStream();
-            
             flujoLectura = new ObjectInputStream(conexionEntrada);
             //Salida de datos
             
@@ -54,9 +52,10 @@ public class SocketCliente  {
             flujoEscritura.flush();
             
             // recupera la respuesta del servidor...
-            //dto = (DTO_Cliente) flujoLectura.readObject(); // aqui esta el problema que resetea la conexion
-
-           flujoEscritura.close();
+            dto = (DTO_Cliente) flujoLectura.readObject(); // aqui esta el problema que resetea la conexion
+            System.out.println(dto.getAlfabeto());
+            
+            flujoEscritura.close();
             flujoLectura.close();
             cliente.close();
         

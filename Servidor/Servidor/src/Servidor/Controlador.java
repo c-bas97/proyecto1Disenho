@@ -16,10 +16,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import static java.lang.String.valueOf;
-import java.sql.ResultSet;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,8 +61,21 @@ public class Controlador {
         out.close();
     }
     
-    public void eliminarAlgoritmo(DTO_Admin dto){
+    public void eliminarAlgoritmo(DTO_Admin dto) throws IOException{
         //agregar código que elimina el algoritmo de la carpeta de baseProyecto
+        File folder = new File("C:\\Users\\Luis\\Desktop\\gitKraken\\Disenho\\proyecto1Disenho\\Servidor\\Servidor\\src\\AlgoritmosActivos");
+        File[] listOfFiles = folder.listFiles();
+        for (int i = 0; i < listOfFiles.length; i++) {
+            
+            if(listOfFiles[i].getName().equalsIgnoreCase(dto.getNombreAlgoritmo())){
+                System.out.println("entrreee");
+                System.out.println(listOfFiles[i].getName());
+                Path path = Paths.get(listOfFiles[i].getAbsolutePath());
+                Files.delete(path);
+            }
+            else{} 
+            } 
+        
     }
     
     public void abrirCarpetaBitacoras(String ruta_archivo){

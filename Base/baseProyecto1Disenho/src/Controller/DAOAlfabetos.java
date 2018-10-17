@@ -36,7 +36,7 @@ public class DAOAlfabetos {
     
     
     public void actualizar(String nombre,Boolean estado) throws SQLException{
-        state.executeUpdate("UPDATE ALFABETOS SET ESTADO = '" + estado + "' WHERE NOMBRE = '"+ nombre +"' ");
+        state.executeUpdate("DELETE FROM ALFABETOS WHERE NOMBRE = '"+ nombre +"' ");
         System.out.println("alfabeto " + nombre + " actualizado");
     };
     
@@ -96,6 +96,7 @@ public class DAOAlfabetos {
         ArrayList<String> alfabetos = new ArrayList<>();
         
         while(rs.next()){
+            System.out.println(rs.getString(1));
             alfabetos.add(rs.getString(1));
         }
         return alfabetos;

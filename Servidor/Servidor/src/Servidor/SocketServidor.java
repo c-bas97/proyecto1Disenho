@@ -64,7 +64,7 @@ public class SocketServidor {
     }
     
     private void atenderPeticion() throws SQLException,IOException, ClassNotFoundException{
-        try {
+        //try {
             //obtener el DTO que envió el cliente con su solicitud (datos, frase, codificación o decodificación)
             DTO_Cliente dto = (DTO_Cliente) flujoEntrada.readObject();
             
@@ -76,12 +76,14 @@ public class SocketServidor {
                 controlador.procesarPeticion(dto);
             }
             
+            System.out.println(dto.getAlfabetos());
+            dto.setAlfabeto("Una prueba");
             //enviar respuesta al cliente
             flujoSalida.writeObject(dto);
-        } catch (IOException ex) {
-            System.out.println("Problemas leyendo o escribiendo en el flujo entrada/salida");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Problemas en la conversion del objeto recibido...");
-        }
+        //} catch (IOException ex) {
+        //    System.out.println("Problemas leyendo o escribiendo en el flujo entrada/salida");
+        //} catch (ClassNotFoundException ex) {
+        //    System.out.println("Problemas en la conversion del objeto recibido...");
+        //}
     }
 }

@@ -38,7 +38,7 @@ public class Usuario extends javax.swing.JFrame {
         //dtoC.setAlfabetos(algoritmos);
         dtoC.setCargarDatos(true);
         socket.enviarSolicitud(dtoC);
-        //System.out.println(dtoC.getAlfabetos().get(0));
+        
         /*
         for (String alfabeto : dtoC.getAlfabetos()) {
             comboAlfabetos.addItem(alfabeto);
@@ -61,6 +61,7 @@ public class Usuario extends javax.swing.JFrame {
         }
         listAdi.setModel(modeCar);
         dtoC.setCargarDatos(false);
+        
         */
     }
 
