@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import static java.lang.String.valueOf;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -82,9 +83,9 @@ public class Controlador {
         alg = controler.cargarAlgoritmos();
         tipBit = controler.cargarPersistencias();
         
-        alf = controler.cargarAlfabetos();
-        
-        tipFr = new ArrayList<String>();
+        alf =controler.cargarAlfabetos();
+        /*
+        tipFr = new ArrayList<>();
         Class[] classes = ClassUtil.getClasses("Servidor");
         for(Class clazz : classes)
         {
@@ -92,12 +93,12 @@ public class Controlador {
             {
                 //agregar a tipFr el nombre (sin el .java) de la clase, o ponerle un toString a las clases que implementan F---rase y meter ese string al arreglo
             }
-        }
+        }*/
         
         //asignar los datos
         dtoc.setAlfabetos(alf);
         dtoc.setAlgoritmos(alg);
-        dtoc.setTiposFrases(tipFr);
+        //dtoc.setTiposFrases(tipFr);
         dtoc.setTiposBitacoras(tipBit);
     }
     
@@ -110,7 +111,7 @@ public class Controlador {
             datos.setCifra(dto.getCifra());
             datos.setClave(dto.getClave());
             datos.setFrase(dto.getFrase());
-            if (dto.getCodificar())
+            if (dto.getCodificar()== true)
                 datos.setModo(false);
             else
                 datos.setModo(true);
@@ -118,7 +119,7 @@ public class Controlador {
             
             ArrayList<Algoritmo> lista1 = new ArrayList();
             for (int i=0; i<dto.getAlgoritmos().size(); i++){
-               lista1.add(valueOf(dto.getAlgoritmos().get(i)));
+               lista1.add(dto.getAlgoritmos().get(i));
             }
             datos.setTipoAlgoritmo();
             datos.setTipoSalida();

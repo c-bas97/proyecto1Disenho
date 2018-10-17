@@ -91,13 +91,14 @@ public class DAOAlfabetos {
     
     
     
-    public ResultSet getAlfabetos() throws SQLException{
+    public ArrayList getAlfabetos() throws SQLException{
         rs = state.executeQuery("SELECT * FROM Alfabetos WHERE ESTADO = TRUE");
-        /*
+        ArrayList alfabetos = new ArrayList<>();
+        
         while(rs.next()){
-            System.out.println(rs.getString(1));
-        }*/
-        return rs;
+            alfabetos.add(rs.getString(1));
+        }
+        return alfabetos;
     }
     
     

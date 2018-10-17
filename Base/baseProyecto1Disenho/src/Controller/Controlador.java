@@ -25,7 +25,7 @@ public class Controlador  {
         this.dbalfabetos = new DAOAlfabetos();
     }
     
-    public ResultSet cargarAlfabetos() throws SQLException{
+    public ArrayList cargarAlfabetos() throws SQLException{
         //System.out.println("Clase Controller, metodo CargarAlfabetos. Solicita los nombres de los alfabetos disponibles");
         return dbalfabetos.getAlfabetos();
     }
