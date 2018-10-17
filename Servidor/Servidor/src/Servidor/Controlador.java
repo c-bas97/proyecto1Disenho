@@ -84,7 +84,7 @@ public class Controlador {
         tipBit = controler.cargarPersistencias();
         
 
-        alf =controler.cargarAlfabetos();
+        alf =(ArrayList)controler.cargarAlfabetos();
         /*
         tipFr = new ArrayList<>();
 

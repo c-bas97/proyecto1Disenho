@@ -35,7 +35,7 @@ public class SocketServidor {
     // socket que contiene la conexion con el cliente
     private Socket cliente;
     
-    public void iniciarServidor() throws IOException{
+    public void iniciarServidor() throws IOException, SQLException,ClassNotFoundException{
         try {
             this.controlador = new Controlador();
             servidor = new ServerSocket(PUERTO);
@@ -65,7 +65,7 @@ public class SocketServidor {
         }
     }
     
-    private void atenderPeticion() throws SQLException{
+    private void atenderPeticion() throws SQLException,IOException, ClassNotFoundException{
         try {
             //obtener el DTO que envió el cliente con su solicitud (datos, frase, codificación o decodificación)
             DTO_Cliente dto = (DTO_Cliente) flujoEntrada.readObject();

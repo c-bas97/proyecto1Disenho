@@ -19,12 +19,8 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        DTO_Admin dto = new DTO_Admin();
-        dto.setarchivoAlgoritmo("C:\\Users\\Luis\\Desktop\\Binario1.txt");
-        dto.setNombreAlgoritmo("Binario1");
-        Controlador cont = new Controlador();
-        cont.agregarAlgoritmo(dto);
-        
+        SocketServidor socket = new SocketServidor();
+        socket.iniciarServidor();
     }
     
 }
