@@ -5,13 +5,14 @@
  */
 package dto_cliente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Usuario
  */
-public class DTO_Cliente {
+public class DTO_Cliente implements Serializable {
 
     private Boolean cargarDatos;
     private ArrayList<String> alfabetos;
@@ -25,6 +26,7 @@ public class DTO_Cliente {
     private String cifra;
     private ArrayList<String> resultados;
     private Boolean codificar;
+    
     
     public DTO_Cliente (){
     }

@@ -83,15 +83,15 @@ public class Controlador {
         alg = controler.cargarAlgoritmos();
         tipBit = controler.cargarPersistencias();
         
-<<<<<<< Updated upstream
+
         alf =controler.cargarAlfabetos();
         /*
         tipFr = new ArrayList<>();
-=======
+
         alf = (ArrayList<String>) controler.cargarAlfabetos();
         
         tipFr = new ArrayList<String>();
->>>>>>> Stashed changes
+
         Class[] classes = ClassUtil.getClasses("Servidor");
         for(Class clazz : classes)
         {
@@ -124,6 +124,7 @@ public class Controlador {
             datos.setNombreAlfabeto(dto.getAlfabeto());
             
             ArrayList<Algoritmo> lista1 = new ArrayList();
+            /*
             for (int i=0; i<dto.getAlgoritmos().size(); i++){
                lista1.add(dto.getAlgoritmos().get(i));
             }
@@ -133,6 +134,7 @@ public class Controlador {
             
             //realizar codificación/decodificación
             controler.procesarPeticion(datos);
+            */
         }
         else{
             FactoryFrase fabrica = new FactoryFrase();

@@ -29,7 +29,7 @@ public class Usuario extends javax.swing.JFrame {
     /**
      * Creates new form Usuario
      */
-    public Usuario() throws IOException {
+    public Usuario() throws IOException, ClassNotFoundException {
         initComponents();
         //ArrayList algoritmos = new ArrayList();
         //algoritmos.add("PalabraClave");
@@ -38,6 +38,8 @@ public class Usuario extends javax.swing.JFrame {
         //dtoC.setAlfabetos(algoritmos);
         dtoC.setCargarDatos(true);
         socket.enviarSolicitud(dtoC);
+        //System.out.println(dtoC.getAlfabetos().get(0));
+        /*
         for (String alfabeto : dtoC.getAlfabetos()) {
             comboAlfabetos.addItem(alfabeto);
         }
@@ -59,7 +61,7 @@ public class Usuario extends javax.swing.JFrame {
         }
         listAdi.setModel(modeCar);
         dtoC.setCargarDatos(false);
-        
+        */
     }
 
     /**
@@ -347,6 +349,8 @@ public class Usuario extends javax.swing.JFrame {
             socket.enviarSolicitud(dtoC);
         } catch (IOException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }        
         //llamar al metodo que hace las cosas
         
@@ -398,6 +402,8 @@ public class Usuario extends javax.swing.JFrame {
                 try {
                     new Usuario().setVisible(true);
                 } catch (IOException ex) {
+                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

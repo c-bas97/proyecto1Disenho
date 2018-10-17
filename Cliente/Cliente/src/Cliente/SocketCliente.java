@@ -17,7 +17,10 @@ import java.net.Socket;
  *
  * @author Usuario
  */
-public class SocketCliente {
+public class SocketCliente  {
+
+    public SocketCliente() {
+    }
     
     private String HOST =  "192.168.1.11";
     private int PUERTO= 5000;
@@ -29,33 +32,34 @@ public class SocketCliente {
     private ObjectOutputStream flujoEscritura;
    
 
-    public DTO_Cliente enviarSolicitud(DTO_Cliente dto) throws IOException{
-        try {
+    public DTO_Cliente enviarSolicitud(DTO_Cliente dto) throws IOException, ClassNotFoundException{
+        
             Socket cliente = new Socket(HOST, PUERTO);
+            
+            conexionSalida = cliente.getOutputStream();
+            flujoEscritura = new ObjectOutputStream(conexionSalida);
             
             //Establece mecanismo de comunicacion con el servidor - Lectura..
             //Entrada de datos
+            
+            
             conexionEntrada = cliente.getInputStream();
+            
             flujoLectura = new ObjectInputStream(conexionEntrada);
             //Salida de datos
-            conexionSalida = cliente.getOutputStream();
-            flujoEscritura = new ObjectOutputStream(conexionSalida);
+            
 
             // procesar la gestion a solicitar
             flujoEscritura.writeObject(dto);
             flujoEscritura.flush();
             
             // recupera la respuesta del servidor...
-            dto = (DTO_Cliente) flujoLectura.readObject();
+            //dto = (DTO_Cliente) flujoLectura.readObject(); // aqui esta el problema que resetea la conexion
 
-            flujoEscritura.close();
+           flujoEscritura.close();
             flujoLectura.close();
             cliente.close();
-        } catch (ClassNotFoundException  ex) {
-            System.out.println("Conectandose a un servidor desconocido");
-        } catch (IOException ex) {
-            System.out.println("Problemas con los flujos de entrada / salida");
-        }
+        
 
         return dto;
     }
