@@ -36,7 +36,7 @@ public class SocketServidor {
     private Socket cliente;
     
     public void iniciarServidor() throws IOException, SQLException,ClassNotFoundException{
-        try {
+        
             this.controlador = new Controlador();
             servidor = new ServerSocket(PUERTO);
             
@@ -59,10 +59,8 @@ public class SocketServidor {
                 flujoSalida.close();
                 cliente.close();
             }
-        }
-        catch (Exception e){
-            System.out.println("Problemas creando el servidor en el puerto "+ PUERTO);
-        }
+        
+        
     }
     
     private void atenderPeticion() throws SQLException,IOException, ClassNotFoundException{

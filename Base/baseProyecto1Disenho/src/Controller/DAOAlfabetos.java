@@ -91,9 +91,9 @@ public class DAOAlfabetos {
     
     
     
-    public ArrayList getAlfabetos() throws SQLException{
+    public ArrayList<String> getAlfabetos() throws SQLException{
         rs = state.executeQuery("SELECT * FROM Alfabetos WHERE ESTADO = TRUE");
-        ArrayList alfabetos = new ArrayList<>();
+        ArrayList<String> alfabetos = new ArrayList<>();
         
         while(rs.next()){
             alfabetos.add(rs.getString(1));
