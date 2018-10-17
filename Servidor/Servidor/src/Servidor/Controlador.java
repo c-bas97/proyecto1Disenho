@@ -83,9 +83,15 @@ public class Controlador {
         alg = controler.cargarAlgoritmos();
         tipBit = controler.cargarPersistencias();
         
+<<<<<<< Updated upstream
         alf =controler.cargarAlfabetos();
         /*
         tipFr = new ArrayList<>();
+=======
+        alf = (ArrayList<String>) controler.cargarAlfabetos();
+        
+        tipFr = new ArrayList<String>();
+>>>>>>> Stashed changes
         Class[] classes = ClassUtil.getClasses("Servidor");
         for(Class clazz : classes)
         {

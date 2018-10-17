@@ -94,7 +94,6 @@ public class Usuario extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txtfFrase = new javax.swing.JTextField();
         btnPeticion = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         listSalida = new javax.swing.JList<>();
@@ -210,14 +209,6 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Tipo de Bitacora");
 
@@ -235,17 +226,14 @@ public class Usuario extends javax.swing.JFrame {
                     .addComponent(txtfFrase)
                     .addComponent(jLabel5)
                     .addComponent(btnPeticion)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(40, 40, 40)
-                                .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel18)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(40, 40, 40)
+                            .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addComponent(jLabel18))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,9 +255,8 @@ public class Usuario extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(13, 13, 13)
+                    .addComponent(comboAlfabetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(jLabel4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -325,17 +312,6 @@ public class Usuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        //ArrayList alfabetos = new ArrayList();
-        //alfabetos.add((String) comboAlfabetos.getSelectedItem());
-
-        dtoC.setAlfabeto((String) comboAlfabetos.getSelectedItem());
-        //System.out.println(dtoC.getAlfabeto());
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeticionActionPerformed
         // TODO add your handling code here:
@@ -438,9 +414,6 @@ public class Usuario extends javax.swing.JFrame {
         if(listAlgoritmos.getSelectedValuesList().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor seleccionar algun tipo de algoritmo", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
-        if (radDeco.isSelected()){
-            dtoC.setCodificar(true);
-        }
         if(txtfFrase.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor introducir frase", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -467,16 +440,20 @@ public class Usuario extends javax.swing.JFrame {
                 dtoC.getTiposFrases().remove(i);
                 dtoC.getTiposFrases().add(i-1, replaceAll);
             }
-            dtoC.setCodificar(false);
             dtoC.setFrase(txtfFrase.getText());
-            
+            dtoC.setAlfabeto((String) comboAlfabetos.getSelectedItem());
+            if (radDeco.isSelected()){
+            dtoC.setCodificar(true);
+            }
+            else{
+                dtoC.setCodificar(false);
+            }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPeticion;
     private javax.swing.JComboBox<String> comboAlfabetos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;

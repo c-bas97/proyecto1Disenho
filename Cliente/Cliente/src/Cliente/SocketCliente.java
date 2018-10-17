@@ -19,7 +19,7 @@ import java.net.Socket;
  */
 public class SocketCliente {
     
-    private String HOST =  "localhost";
+    private String HOST =  "192.168.1.11";
     private int PUERTO= 5000;
     
     private InputStream conexionEntrada;
